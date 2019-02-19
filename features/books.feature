@@ -17,5 +17,5 @@ Feature: Books feature
     And the JSON nodes should contain:
       | title                   | King              |
       | author                  | T. M. Frazier     |
-      | hello                   | fake              |
+      | message                 | fake              |
     And the JSON node "enabled" should be true

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\MyServiceInterface;
+use App\Response\BookResponse;
 
 class BooksController extends AbstractController
 {
@@ -25,11 +26,11 @@ class BooksController extends AbstractController
     */
     public function storeAction(Request $request)
     {
-        return new JsonResponse([
+        return BookResponse::fromArray([
             'title' => $request->get('title'),
             'author' => $request->get('author'),
             'enabled' => $request->get('enabled'),
-            'hello' => $this->service->getMessage(),
-        ], 201);
+            'message' => $this->service->getMessage(),
+        ]);
     }
 }
