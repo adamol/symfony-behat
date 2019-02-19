@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
+use App\Request\StoreBookRequest;
+//use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\MyServiceInterface;
@@ -24,12 +25,12 @@ class BooksController extends AbstractController
     /**
     * @Route("/books", methods={"POST"})
     */
-    public function storeAction(Request $request)
+    public function storeAction(StoreBookRequest $request)
     {
         return BookResponse::fromArray([
-            'title' => $request->get('title'),
-            'author' => $request->get('author'),
-            'enabled' => $request->get('enabled'),
+            'title' => $request->getTitle(),
+            'author' => $request->getAuthor(),
+            'enabled' => $request->isEnabled(),
             'message' => $this->service->getMessage(),
         ]);
     }

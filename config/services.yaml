@@ -12,6 +12,10 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    App\Request\ArgumentResolver:
+        tags:
+            - { name: controller.argument_value_resolver, priority: 50 }
+
     App\Service\MyServiceInterface:
         alias: 'App\Service\MyService'
         public: true
