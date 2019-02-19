@@ -1,5 +1,6 @@
 <?php
 
+use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Behat\Context\Context;
@@ -161,5 +162,14 @@ class FeatureContext implements Context
             );
         }
     }
-}
 
+    /**
+     * @When I fake the :service service
+     */
+    public function iFakeTheService($service)
+    {
+        $container = $this->kernel->getContainer();
+
+        $container->set(\App\Service\MyServiceInterface::class, new \App\Service\FakeService());
+    }
+}
